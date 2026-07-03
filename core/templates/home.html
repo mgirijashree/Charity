@@ -1,0 +1,397 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="relative py-24 px-6 text-center text-white bg-teal-700 overflow-hidden">
+    <!-- Background Image Layer with Animation -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-40 animate-pulse-zoom" 
+         style="background-image: url('{% static 'images/hero.png' %}');">
+    </div>
+
+    <!-- Content Layer -->
+    <div class="relative z-10 max-w-3xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-left">
+            Together, We Can Change Lives
+        </h1>
+        
+        <p class="text-lg md:text-xl mb-10 opacity-0 animate-right">
+            Your kindness today can bring hope, health, and happiness to someone in need.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <!-- Donate Button -->
+            <a href="{% url 'donate' %}" 
+            class="bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-95">
+                Donate Now
+            </a>
+
+            <!-- Volunteer Button -->
+            <a href="{% url 'volunteer' %}" 
+            class="bg-white hover:bg-gray-100 text-teal-700 font-semibold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-95">
+                Become a Volunteer
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 px-6 bg-white text-center">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-5xl font-bold mb-8">Our Mission</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+            At HopeHands Foundation, our mission is to empower communities and transform lives through 
+            compassionate action and sustainable solutions. We are dedicated to providing essential 
+            resources, fostering education, and promoting well-being for those facing adversity. 
+            Together, we strive to build a brighter future, one hand at a time.
+        </p>
+    </div>
+</section>
+
+
+<section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center">
+
+        <h2 class="text-5xl font-bold mb-12">Our Causes</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Card 1 -->
+            <div class="cause-card float-down group bg-white p-4 shadow-md rounded-lg border overflow-hidden">
+
+                <div class="overflow-hidden">
+                    <img src="{% static 'images/home1.png' %}"
+                        class="w-full h-48 object-cover rounded-md mb-4 animate-image transition-transform duration-500"
+                        alt="Education">
+                </div>
+
+                <div class="p-5">
+                    <h3 class="font-bold text-xl mb-3">
+                        Education for Children
+                    </h3>
+
+                    <p class="text-gray-600">
+                        Providing quality education and resources to underprivileged children,
+                        ensuring they have the opportunity to succeed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="cause-card float-up group bg-white p-4 shadow-md rounded-lg border overflow-hidden">
+
+                <div class="overflow-hidden">
+                    <img src="{% static 'images/home2.png' %}"
+                        class="w-full h-48 object-cover rounded-md mb-4 animate-image transition-transform duration-500"
+                        alt="Medical">
+                </div>
+
+                <div class="p-5">
+                    <h3 class="font-bold text-xl mb-3">
+                        Medical Support
+                    </h3>
+
+                    <p class="text-gray-600">
+                        Offering medical assistance and healthcare support to those in need, ensuring
+                        access to essential treatments and services.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="cause-card float-down group bg-white p-4 shadow-md rounded-lg border overflow-hidden">
+
+                <div class="overflow-hidden">
+                    <img src="{% static 'images/home3.png' %}"
+                        class="w-full h-48 object-cover rounded-md mb-4 animate-image transition-transform duration-500"
+                        alt="Food & Shelter">
+                </div>
+
+                <div class="p-5">
+                    <h3 class="font-bold text-xl mb-3">
+                        Food & Shelter
+                    </h3>
+
+                    <p class="text-gray-600">
+                        Providing food, shelter and basic necessities to individuals and 
+                        families facing hardship and homelessness.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="cause-card float-up group bg-white p-4 shadow-md rounded-lg border overflow-hidden">
+
+                <div class="overflow-hidden">
+                    <img src="{% static 'images/home4.png' %}"
+                        class="w-full h-48 object-cover rounded-md mb-4 animate-image transition-transform duration-500"
+                        alt="Disaster Relief">
+                </div>
+
+                <div class="p-5">
+                    <h3 class="font-bold text-xl mb-3">
+                        Disaster Relief
+                    </h3>
+
+                    <p class="text-gray-600">
+                        Responding swiftly to natural disasters and providing immediate relief
+                        and long-term recovery support to affected communities.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
+
+            <!-- Donate Button -->
+            <a href="{% url 'donate' %}" 
+            class="bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-95">
+                Donate Now
+            </a>
+
+            <!-- About Button -->
+            <a href="{% url 'about' %}" 
+            class="bg-white hover:bg-gray-100 text-teal-700 font-semibold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-95">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- Impact Section -->
+<section class="py-20 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <h2 class="text-5xl font-bold text-center mb-16">
+            Impact Section
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Card -->
+            <div class="bg-gray-100 rounded-xl shadow-lg p-8 transition duration-500 hover:-translate-y-3 hover:shadow-2xl">
+
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">
+                    Lives Helped
+                </h3>
+
+                <h1 class="counter text-5xl font-bold text-blue-900"
+                    data-target="10000">
+                    10000+
+                </h1>
+
+            </div>
+
+            <div class="bg-gray-100 rounded-xl shadow-lg p-8 transition duration-500 hover:-translate-y-3 hover:shadow-2xl">
+
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">
+                    Volunteers
+                </h3>
+
+                <h1 class="counter text-5xl font-bold text-green-700"
+                    data-target="500">
+                    500+
+                </h1>
+
+            </div>
+
+            <div class="bg-gray-100 rounded-xl shadow-lg p-8 transition duration-500 hover:-translate-y-3 hover:shadow-2xl">
+
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">
+                    Projects Completed
+                </h3>
+
+                <h1 class="counter text-5xl font-bold text-red-600"
+                    data-target="120">
+                    120+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="py-20 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <h2 class="text-5xl font-bold text-center mb-16">
+
+            Stories / Testimonials
+
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+            <!-- Card -->
+
+            <div class="bg-white rounded-xl shadow-lg border p-6 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
+
+                <div class="flex items-center gap-4">
+
+                    <img src="https://i.pravatar.cc/80?img=32"
+                        class="w-14 h-14 rounded-full">
+
+                    <div>
+
+                        <h3 class="text-xl font-bold">
+
+                            Sophia Carter
+
+                        </h3>
+
+                        <p class="text-gray-500">
+
+                            2023-08-15
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-yellow-400 text-2xl mt-4">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-8">
+
+                    "HopeHands Foundation has truly made a
+                    difference in my life. Their support helped me
+                    get back on my feet during a difficult time."
+
+                </p>
+
+                <div class="flex gap-8 mt-6 text-gray-500">
+
+                    <span>👍 12</span>
+
+                    <span>👎 2</span>
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="bg-white rounded-xl shadow-lg border p-6 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
+
+                <div class="flex items-center gap-4">
+
+                    <img src="https://i.pravatar.cc/80?img=14"
+                        class="w-14 h-14 rounded-full">
+
+                    <div>
+
+                        <h3 class="text-xl font-bold">
+
+                            Ethan Bennett
+
+                        </h3>
+
+                        <p class="text-gray-500">
+
+                            2023-07-22
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-yellow-400 text-2xl mt-4">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-8">
+
+                    "Volunteering with HopeHands has been an
+                    incredibly rewarding experience. Seeing the
+                    impact we make is truly inspiring."
+
+                </p>
+
+                <div class="flex gap-8 mt-6 text-gray-500">
+
+                    <span>👍 15</span>
+
+                    <span>👎 1</span>
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="bg-white rounded-xl shadow-lg border p-6 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
+
+                <div class="flex items-center gap-4">
+
+                    <img src="https://i.pravatar.cc/80?img=45"
+                        class="w-14 h-14 rounded-full">
+
+                    <div>
+
+                        <h3 class="text-xl font-bold">
+
+                            Olivia Hayes
+
+                        </h3>
+
+                        <p class="text-gray-500">
+
+                            2023-06-10
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-yellow-400 text-2xl mt-4">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="mt-5 text-gray-600 leading-8">
+
+                    "The dedication and compassion of HopeHands
+                    Foundation are unmatched. They are a beacon
+                    of hope for so many."
+
+                </p>
+
+                <div class="flex gap-8 mt-6 text-gray-500">
+
+                    <span>👍 10</span>
+
+                    <span>👎 3</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+{% endblock %}

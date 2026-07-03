@@ -1,0 +1,481 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+/* Hero Image Zoom Animation */
+
+@keyframes heroZoom {
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.hero-image{
+
+    animation:heroZoom 8s infinite ease-in-out;
+
+}
+
+/* Fade Down */
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.fade-down{
+
+    animation:fadeDown 1s ease forwards;
+
+}
+
+/* Fade Up */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.fade-up{
+
+    animation:fadeUp 1.3s ease forwards;
+
+}
+
+/* Pulse Button */
+
+@keyframes pulseZoom{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.pulse-btn{
+
+    animation:pulseZoom 2s infinite;
+
+}
+
+.pulse-btn:hover{
+
+    animation-play-state:paused;
+    transform:scale(1.08);
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+.fade-down{
+    animation:fadeDown 1s ease;
+}
+
+.fade-up{
+    animation:fadeUp 1.2s ease;
+}
+
+.counter{
+    transition:0.4s;
+}
+
+.counter:hover{
+    transform:scale(1.15);
+}
+
+/* Floating Hover */
+
+.group:hover{
+
+    transform:translateY(-12px) scale(1.03);
+
+}
+
+/* Icon Bounce */
+
+.group i{
+
+    transition:0.4s;
+
+}
+
+.group:hover i{
+
+    transform:scale(1.25) rotate(8deg);
+
+}
+</style>
+
+
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="relative h-[650px] overflow-hidden rounded-2xl">
+
+    <!-- Hero Image -->
+    <img src="{% static 'images/volunteer2.png' %}"
+         class="hero-image absolute inset-0 w-full h-full object-cover"
+         alt="Volunteer">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/45"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex h-full items-center justify-center text-center px-6">
+
+        <div class="max-w-4xl">
+
+            <h1 class="fade-down text-5xl md:text-7xl font-extrabold text-white leading-tight">
+
+                Be the Change.
+                <span class="text-yellow-300">
+                    Become a Volunteer.
+                </span>
+
+            </h1>
+
+            <p class="fade-up mt-8 text-xl md:text-2xl text-gray-200 leading-9">
+
+                Your time, skills, and compassion can bring life-changing
+                support to children, families, and communities in need.
+
+            </p>
+
+            <div class="fade-up mt-10">
+
+                <a href="#volunteer-form" 
+                class="pulse-btn inline-block bg-blue-900 hover:bg-blue-800 text-white px-10 py-4 rounded-xl font-semibold shadow-2xl transition duration-300">
+                    Join as a Volunteer
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- Volunteer Program Introduction -->
+<section class="py-20 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+        <!-- Heading -->
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 fade-down">
+            Volunteer Program Introduction
+        </h2>
+
+        <!-- Decorative Line -->
+        <div class="w-24 h-1 bg-blue-900 mx-auto rounded-full mb-8"></div>
+
+        <!-- Description -->
+        <p class="text-lg text-gray-600 leading-9 max-w-5xl mx-auto fade-up">
+            At <span class="font-semibold text-blue-900">HopeHands Foundation</span>,
+            volunteers are the heart of everything we do. Whether you have
+            time, skills, or simply a kind heart, your contribution can help
+            transform lives and strengthen communities. By joining our volunteer
+            family, you'll participate in meaningful initiatives such as
+            educational support, food distribution, healthcare camps, disaster
+            relief, environmental programs, and community outreach projects.
+            Every act of kindness, no matter how small, creates lasting impact.
+        </p>
+
+        
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= Ways You Can Help ================= -->
+
+<section class="py-20 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Heading -->
+
+        <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-14 fade-down">
+
+            Ways You Can Help
+
+        </h2>
+
+        <!-- Cards -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+
+            <!-- Education -->
+
+            <div class="group bg-white border-2 border-blue-200 rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-500">
+
+                <i class="fa-solid fa-book-open text-4xl text-blue-600 mb-5 group-hover:scale-125 transition"></i>
+
+                <h3 class="text-xl font-bold text-blue-700 mb-3">
+
+                    Education Support
+
+                </h3>
+
+                <p class="text-gray-600 leading-7">
+
+                    Teach children, mentor students, and support learning activities.
+
+                </p>
+
+            </div>
+
+            <!-- Medical -->
+
+            <div class="group bg-white border-2 border-green-200 rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-500">
+
+                <i class="fa-solid fa-stethoscope text-4xl text-green-600 mb-5 group-hover:scale-125 transition"></i>
+
+                <h3 class="text-xl font-bold text-green-700 mb-3">
+
+                    Medical Assistance
+
+                </h3>
+
+                <p class="text-gray-600 leading-7">
+
+                    Help during health camps and provide healthcare awareness.
+
+                </p>
+
+            </div>
+
+            <!-- Food -->
+
+            <div class="group bg-white border-2 border-yellow-300 rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-500">
+
+                <i class="fa-solid fa-bowl-food text-4xl text-yellow-500 mb-5 group-hover:scale-125 transition"></i>
+
+                <h3 class="text-xl font-bold text-yellow-600 mb-3">
+
+                    Food Distribution
+
+                </h3>
+
+                <p class="text-gray-600 leading-7">
+
+                    Prepare and distribute meals to families and children.
+
+                </p>
+
+            </div>
+
+            <!-- Event -->
+
+            <div class="group bg-white border-2 border-purple-300 rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-500">
+
+                <i class="fa-solid fa-calendar-days text-4xl text-purple-600 mb-5 group-hover:scale-125 transition"></i>
+
+                <h3 class="text-xl font-bold text-purple-700 mb-3">
+
+                    Event Coordination
+
+                </h3>
+
+                <p class="text-gray-600 leading-7">
+
+                    Organize fundraising events and awareness campaigns.
+
+                </p>
+
+            </div>
+
+            <!-- Online -->
+
+            <div class="group bg-white border-2 border-cyan-300 rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-500">
+
+                <i class="fa-solid fa-laptop-code text-4xl text-cyan-600 mb-5 group-hover:scale-125 transition"></i>
+
+                <h3 class="text-xl font-bold text-cyan-700 mb-3">
+
+                    Online Volunteering
+
+                </h3>
+
+                <p class="text-gray-600 leading-7">
+
+                    Design, mentor, promote campaigns and support remotely.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= Volunteer Form Starts Here ================= -->
+<section id="volunteer-form" class="py-12 px-6 max-w-2xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Join Our Volunteer Community</h2>
+    
+    <form id="volunteer-form" method="POST" onsubmit="return validateVolunteer()" class="space-y-6 max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg">
+    {% csrf_token %}
+
+    <div>
+        <label class="block text-sm font-semibold mb-1 text-gray-700">{{ form.name.label }}</label>
+        {{ form.name }}
+        <p id="nameError" class="text-red-500 text-xs mt-1"></p>
+    </div>
+
+    <div>
+        <label class="block text-sm font-semibold mb-1 text-gray-700">{{ form.email.label }}</label>
+        {{ form.email }}
+        <p id="emailError" class="text-red-500 text-xs mt-1"></p>
+    </div>
+
+    <div>
+        <label class="block text-sm font-semibold mb-1 text-gray-700">{{ form.phone.label }}</label>
+        {{ form.phone }}
+        <p id="phoneError" class="text-red-500 text-xs mt-1"></p>
+    </div>
+
+    <div>
+        <label class="block text-sm font-semibold mb-1 text-gray-700">{{ form.area_of_interest.label }}</label>
+        {{ form.area_of_interest }}
+        <p id="areaError" class="text-red-500 text-xs mt-1"></p>
+    </div>
+
+    <div>
+        <label class="block text-sm font-semibold mb-1 text-gray-700">{{ form.availability.label }}</label>
+        {{ form.availability }}
+        <p id="availabilityError" class="text-red-500 text-xs mt-1"></p>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-900 text-white p-3 rounded font-bold hover:bg-blue-800 transition">
+        Become a Volunteer
+    </button>
+</form>
+
+
+    <p class="text-center text-gray-500 mt-6">
+
+We respect your privacy. Our team will contact you soon.
+
+</p>
+
+</section>
+
+
+
+<script>
+function validateVolunteer() {
+    let valid = true;
+    
+    // Get fields using Django's default ID pattern: id_<fieldname>
+    const name = document.getElementById("id_name");
+    const email = document.getElementById("id_email");
+    const phone = document.getElementById("id_phone");
+    const area = document.getElementById("id_area_of_interest"); // Matches forms.py
+    const availability = document.getElementById("id_availability"); // Matches forms.py
+
+    // Reset errors
+    document.querySelectorAll('[id$="Error"]').forEach(el => el.innerHTML = "");
+
+    if (name.value.trim().length < 3) {
+        document.getElementById("nameError").innerHTML = "Enter at least 3 letters.";
+        valid = false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email.value)) {
+        document.getElementById("emailError").innerHTML = "Enter a valid email.";
+        valid = false;
+    }
+
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(phone.value)) {
+        document.getElementById("phoneError").innerHTML = "Phone number must be exactly 10 digits.";
+        valid = false;
+    }
+
+    if (area.value === "") {
+        document.getElementById("areaError").innerHTML = "Please select an area.";
+        valid = false;
+    }
+
+    if (availability.value === "") {
+        document.getElementById("availabilityError").innerHTML = "Please select your availability.";
+        valid = false;
+    }
+
+    return valid;
+}
+</script>
+{% endblock %}

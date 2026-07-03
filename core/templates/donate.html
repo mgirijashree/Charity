@@ -1,0 +1,739 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold mb-4">Make a Difference Today</h1>
+    <p class="mb-8 text-gray-600">Your generous donation will help us continue our mission to support communities in need.</p>
+    
+    <form id="donationForm"
+      action="{% url 'donate' %}"
+      method="POST"
+      class="bg-white p-8 shadow-md rounded-lg space-y-6">
+        {% csrf_token %}
+
+        
+     
+        
+
+
+<div>
+    <label class="block text-sm font-semibold mb-2">
+        Full Name
+    </label>
+
+   {{ form.name }}
+
+    <p id="nameError" class="text-red-600 text-sm mt-1"></p>
+
+    {% if form.name.errors %}
+    <p class="text-red-600 text-sm">
+        {{ form.name.errors.0 }}
+    </p>
+    {% endif %}
+</div>
+
+
+<div>
+    <label class="block text-sm font-semibold mb-2">
+        Email Address
+    </label>
+
+    {{ form.email }}
+
+<p id="emailError" class="text-red-600 text-sm mt-1"></p>
+
+{% if form.email.errors %}
+<p class="text-red-600 text-sm">
+    {{ form.email.errors.0 }}
+</p>
+{% endif %}
+</div>
+
+
+<div>
+    <label class="block text-sm font-semibold mb-2">
+        Mobile Number
+    </label>
+
+    {{ form.phone }}
+
+    <p id="phoneError" class="text-red-600 text-sm mt-1"></p>
+
+    {% if form.phone.errors %}
+        <p class="text-red-600 text-sm">
+            {{ form.phone.errors.0 }}
+        </p>
+    {% endif %}
+</div>
+
+
+
+<div>
+    <label class="block text-sm font-semibold mb-2">
+        Address
+    </label>
+
+    {{ form.address }}
+    <p id="addressError" class="text-red-600 text-sm mt-1"></p>
+
+{% if form.address.errors %}
+<p class="text-red-600 text-sm">
+{{ form.address.errors.0 }}
+</p>
+{% endif %}
+</div>
+
+
+
+<div>
+    <label class="block text-sm font-semibold mb-2">
+        Select a Cause
+    </label>
+
+    {{ form.cause }}
+
+    
+
+    <p id="causeError" class="text-red-600 text-sm mt-1"></p>
+
+{% if form.cause.errors %}
+<p class="text-red-600 text-sm">
+{{ form.cause.errors.0 }}
+</p>
+{% endif %}
+</div>
+
+
+
+
+
+{{ form.amount }}
+
+<p id="amountError" class="text-red-600 text-sm mt-1"></p>
+
+{% if form.amount.errors %}
+<p class="text-red-600 text-sm">
+{{ form.amount.errors.0 }}
+</p>
+{% endif %}
+
+
+
+{% if form.non_field_errors %}
+<div class="bg-red-100 border border-red-300 text-red-700 rounded-lg p-4 mb-6">
+
+    {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+        <div>
+            <label class="block font-semibold mb-2">Select Donation Amount</label>
+            <div id="amountContainer" class="grid grid-cols-4 gap-2 mb-4">
+                <button type="button" onclick="setAmount(500, this)" class="amount-btn border py-2 px-4 rounded hover:bg-blue-50 focus:bg-blue-900 focus:text-white">₹500</button>
+                <button type="button" onclick="setAmount(1500, this)" class="amount-btn border py-2 px-4 rounded hover:bg-blue-50 focus:bg-blue-900 focus:text-white">₹1500</button>
+                <button type="button" onclick="setAmount(3000, this)" class="amount-btn border py-2 px-4 rounded hover:bg-blue-50 focus:bg-blue-900 focus:text-white">₹3000</button>
+                <button type="button" onclick="setAmount('custom', this)" class="amount-btn border py-2 px-4 rounded hover:bg-blue-50 focus:bg-blue-900 focus:text-white">Custom</button>
+            </div>
+            
+        </div>
+
+        <button type="button" onclick="validateAndOpenModal()" class="w-full bg-blue-900 text-white p-3 rounded font-bold transition hover:bg-blue-800">Donate Securely</button>
+        <p class="text-center text-sm text-gray-500">Your donation is safe with us.</p>
+    </form>
+</div>
+
+<div id="paymentModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+
+        <h2 class="text-2xl font-bold text-center mb-6">
+            Secure Payment
+        </h2>
+
+        <!-- Amount -->
+        <div class="mb-5">
+            <label class="font-semibold block mb-2">Donation Amount</label>
+
+            <input
+                type="text"
+                id="displayAmount"
+                readonly
+                class="w-full border rounded-lg p-3 bg-gray-100 font-bold text-blue-900">
+        </div>
+
+        <!-- Payment Method -->
+        <div class="mb-5">
+
+            <label class="font-semibold block mb-2">
+
+                Payment Method
+
+            </label>
+
+            <select id="paymentMethod"
+                onchange="changePaymentMethod()"
+                class="w-full border rounded-lg p-3">
+
+                <option value="">Select Payment Method</option>
+
+                <option value="upi">UPI</option>
+
+                <option value="card">Credit / Debit Card</option>
+
+            </select>
+
+        </div>
+
+        <!-- UPI -->
+
+        <div id="upiDiv" class="hidden space-y-2">
+
+            <input
+                type="text"
+                id="upiId"
+                placeholder="example@oksbi"
+                class="w-full border rounded-lg p-3">
+
+            <p id="upiError" class="text-red-600 text-sm"></p>
+
+        </div>
+
+        <!-- Card -->
+
+        <div id="cardDiv" class="hidden space-y-4">
+
+            <input
+                type="text"
+                id="cardNumber"
+                maxlength="16"
+                placeholder="Card Number"
+                class="w-full border rounded-lg p-3">
+
+            <p id="cardError" class="text-red-600 text-sm"></p>
+
+            <div class="grid grid-cols-2 gap-3">
+
+                <div>
+
+                    <input
+                        type="month"
+                        id="expiry"
+                        class="w-full border rounded-lg p-3">
+
+                    <p id="expiryError"
+                        class="text-red-600 text-sm"></p>
+
+                </div>
+
+                <div>
+
+                    <input
+                        type="password"
+                        id="cvv"
+                        maxlength="4"
+                        placeholder="CVV"
+                        class="w-full border rounded-lg p-3">
+
+                    <p id="cvvError"
+                        class="text-red-600 text-sm"></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flex gap-3 mt-8">
+
+            <button
+                onclick="closeModal()"
+                class="w-full border rounded-lg py-3">
+
+                Cancel
+
+            </button>
+
+            <button
+                onclick="submitDonation()"
+                class="w-full bg-blue-900 text-white rounded-lg py-3">
+
+                Pay Now
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+
+const form = document.getElementById("donationForm");
+
+const name = document.querySelector("[name='name']");
+const email = document.querySelector("[name='email']");
+const phone = document.querySelector("[name='phone']");
+const address = document.querySelector("[name='address']");
+const cause = document.querySelector("[name='cause']");
+const amount = document.querySelector("[name='amount']");
+
+/*------------------------------
+    Utility Functions
+------------------------------*/
+
+function showError(field, id, message){
+
+    document.getElementById(id).innerHTML = message;
+
+    field.classList.remove("border-red-500","border-green-500");
+
+    if(message===""){
+
+        field.classList.add("border-green-500");
+
+    }else{
+
+        field.classList.add("border-red-500");
+
+    }
+
+}
+
+/*------------------------------
+      Name Validation
+------------------------------*/
+
+function validateName(){
+
+    let value = name.value.trim();
+
+    if(value===""){
+
+        showError(name,"nameError","Name is required.");
+        return false;
+
+    }
+
+    if(value.length<3){
+
+        showError(name,"nameError","Minimum 3 characters required.");
+        return false;
+
+    }
+
+    if(!/^[A-Za-z ]+$/.test(value)){
+
+        showError(name,"nameError","Only alphabets are allowed.");
+        return false;
+
+    }
+
+    showError(name,"nameError","");
+    return true;
+
+}
+
+/*------------------------------
+      Email Validation
+------------------------------*/
+
+function validateEmail(){
+
+    let value=email.value.trim();
+
+    let pattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(value===""){
+
+        showError(email,"emailError","Email is required.");
+        return false;
+
+    }
+
+    if(!pattern.test(value)){
+
+        showError(email,"emailError","Enter a valid email.");
+        return false;
+
+    }
+
+    showError(email,"emailError","");
+    return true;
+
+}
+
+/*------------------------------
+      Phone Validation
+------------------------------*/
+
+function validatePhone(){
+
+    let value = phone.value.trim();
+
+    if(value === ""){
+
+        showError(phone, "phoneError", "Phone number is required.");
+        return false;
+
+    }
+
+    if(!/^\d{10}$/.test(value)){
+
+        showError(phone, "phoneError", "Phone number must contain exactly 10 digits.");
+        return false;
+
+    }
+
+    showError(phone, "phoneError", "");
+    return true;
+}
+
+phone.addEventListener("input", function () {
+
+    this.value = this.value.replace(/\D/g, "");
+
+    if (this.value.length > 10) {
+        this.value = this.value.slice(0,10);
+    }
+
+    validatePhone();
+
+});
+
+/*------------------------------
+      Address Validation
+------------------------------*/
+
+function validateAddress(){
+
+    let value=address.value.trim();
+
+    if(value===""){
+
+        showError(address,"addressError","Address is required.");
+        return false;
+
+    }
+
+    if(value.length<10){
+
+        showError(address,"addressError","Address must contain at least 10 characters.");
+        return false;
+
+    }
+
+    showError(address,"addressError","");
+    return true;
+
+}
+
+/*------------------------------
+      Cause Validation
+------------------------------*/
+
+function validateCause(){
+
+    if(cause.value===""){
+
+        document.getElementById("causeError").innerHTML="Please select a cause.";
+
+        cause.classList.add("border-red-500");
+
+        return false;
+
+    }
+
+    document.getElementById("causeError").innerHTML="";
+    cause.classList.remove("border-red-500");
+    cause.classList.add("border-green-500");
+
+    return true;
+
+}
+
+/*------------------------------
+      Amount Validation
+------------------------------*/
+
+function validateAmount(){
+
+    if(amount.value===""){
+
+        document.getElementById("amountError").innerHTML="Please select a donation amount.";
+
+        return false;
+
+    }
+
+    if(parseInt(amount.value)<100){
+
+        document.getElementById("amountError").innerHTML="Minimum donation amount is ₹100.";
+
+        return false;
+
+    }
+
+    document.getElementById("amountError").innerHTML="";
+
+    return true;
+
+}
+
+/*------------------------------
+      Live Validation
+------------------------------*/
+
+name.addEventListener("input",validateName);
+
+email.addEventListener("input",validateEmail);
+
+phone.addEventListener("input",validatePhone);
+
+address.addEventListener("input",validateAddress);
+
+cause.addEventListener("change",validateCause);
+
+/*------------------------------
+      Amount Buttons
+------------------------------*/
+
+function setAmount(value,button){
+
+    document.querySelectorAll(".amount-btn").forEach(btn=>{
+
+        btn.classList.remove("bg-blue-900","text-white");
+
+    });
+
+    button.classList.add("bg-blue-900","text-white");
+
+    if(value==="custom"){
+
+        let custom=prompt("Enter Donation Amount");
+
+        if(custom!=null && custom!=""){
+
+            amount.value=custom;
+
+        }
+
+    }
+
+    else{
+
+        amount.value=value;
+
+    }
+
+    validateAmount();
+
+}
+
+/*------------------------------
+      Donate Button
+------------------------------*/
+
+function validateAndOpenModal(){
+
+    const valid =
+        validateName() &&
+        validateEmail() &&
+        validatePhone() &&
+        validateAddress() &&
+        validateCause() &&
+        validateAmount();
+
+    if(!valid){
+        return;
+    }
+
+    document.getElementById("displayAmount").value = "₹ " + amount.value;
+
+    document.getElementById("paymentModal").classList.remove("hidden");
+
+}
+
+/*------------------------------
+      Payment Method
+------------------------------*/
+function changePaymentMethod(){
+
+    let method=document.getElementById("paymentMethod").value;
+
+    document.getElementById("upiDiv").classList.add("hidden");
+    document.getElementById("cardDiv").classList.add("hidden");
+
+    if(method=="upi"){
+
+        document.getElementById("upiDiv").classList.remove("hidden");
+
+    }
+
+    else if(method=="card"){
+
+        document.getElementById("cardDiv").classList.remove("hidden");
+
+    }
+
+}
+
+/*------------------------------
+      Validate UPI
+------------------------------*/
+function validateUPI(){
+
+    let upi=document.getElementById("upiId").value.trim();
+
+    let pattern=/^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/;
+
+    if(!pattern.test(upi)){
+
+        document.getElementById("upiError").innerHTML="Enter a valid UPI ID.";
+
+        return false;
+
+    }
+
+    document.getElementById("upiError").innerHTML="";
+
+    return true;
+
+}
+
+/*------------------------------
+      Validate Card 
+------------------------------*/
+
+function validateCard(){
+
+    let card=document.getElementById("cardNumber");
+
+    card.value=card.value.replace(/\D/g,"");
+
+    let value=card.value;
+
+    if(value.length!=16){
+
+        document.getElementById("cardError").innerHTML="Card number must contain exactly 16 digits.";
+
+        return false;
+
+    }
+
+    document.getElementById("cardError").innerHTML="";
+
+    return true;
+
+}
+
+function validateCVV(){
+
+    let cvv=document.getElementById("cvv").value;
+
+    if(!/^\d{3,4}$/.test(cvv)){
+
+        document.getElementById("cvvError").innerHTML="CVV should contain 3 or 4 digits.";
+
+        return false;
+
+    }
+
+    document.getElementById("cvvError").innerHTML="";
+
+    return true;
+
+}
+
+
+
+function validateExpiry(){
+
+    let exp=document.getElementById("expiry").value;
+
+    if(exp==""){
+
+        document.getElementById("expiryError").innerHTML="Select expiry date.";
+
+        return false;
+
+    }
+
+    let today=new Date();
+
+    let selected=new Date(exp+"-01");
+
+    selected.setMonth(selected.getMonth()+1);
+
+    if(selected<today){
+
+        document.getElementById("expiryError").innerHTML="Card has expired.";
+
+        return false;
+
+    }
+
+    document.getElementById("expiryError").innerHTML="";
+
+    return true;
+
+}
+/*------------------------------
+      Close Modal
+------------------------------*/
+
+function closeModal(){
+
+    document.getElementById("paymentModal").classList.add("hidden");
+
+}
+
+/*------------------------------
+      Submit Form
+------------------------------*/
+
+function submitDonation(){
+
+    let method = document.getElementById("paymentMethod").value;
+
+    if(method==""){
+
+        alert("Please select a payment method.");
+        return;
+
+    }
+
+    if(method=="upi"){
+
+        if(!validateUPI()) return;
+
+    }
+
+    if(method=="card"){
+
+        if(!validateCard()) return;
+        if(!validateCVV()) return;
+        if(!validateExpiry()) return;
+
+    }
+
+    form.submit();
+
+}
+
+    
+
+</script>
+
+
+
+
+{% endblock %}

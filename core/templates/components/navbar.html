@@ -1,0 +1,15 @@
+<nav class="flex justify-between items-center py-4 px-8 bg-white shadow-md">
+    <div class="font-bold text-2xl">HopeHands Foundation</div>
+    
+    <div class="space-x-6 text-lg font-bold text-gray-800">
+        <a href="{% url 'home' %}" class="hover:text-[#1F3D8A] {% if request.resolver_match.url_name == 'home' %}text-[#1F3D8A] border-b-2 border-[#1F3D8A]{% endif %}">Home</a>
+        <a href="{% url 'about' %}" class="hover:text-[#1F3D8A] {% if request.resolver_match.url_name == 'about' %}text-[#1F3D8A] border-b-2 border-[#1F3D8A]{% endif %}">About Us</a>
+        <a href="{% url 'causes' %}" class="hover:text-[#1F3D8A] {% if request.resolver_match.url_name == 'causes' %}text-[#1F3D8A] border-b-2 border-[#1F3D8A]{% endif %}">Causes</a>
+        <a href="{% url 'donate' %}" class="hover:text-[#1F3D8A] {% if request.resolver_match.url_name == 'donate' %}text-[#1F3D8A] border-b-2 border-[#1F3D8A]{% endif %}">Donate</a>
+        <a href="{% url 'contact' %}" class="hover:text-[#1F3D8A] {% if request.resolver_match.url_name == 'contact' %}text-[#1F3D8A] border-b-2 border-[#1F3D8A]{% endif %}">Contact</a>
+        
+        <a href="{% url 'donate' %}" class="bg-[#1F3D8A] hover:bg-blue-800 text-white px-4 py-2 rounded transition duration-300 hover:scale-95 inline-block">
+            Donate Now
+        </a>
+    </div>
+</nav>

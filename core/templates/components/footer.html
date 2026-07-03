@@ -1,0 +1,26 @@
+{% load static %}
+
+<footer class="bg-gray-100 py-10 mt-10 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+
+        <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center text-gray-700 font-bold text-lg">
+            <a href="{% url 'about' %}" class="hover:text-[#1F3D8A] transition">About Us</a>
+            <a href="{% url 'causes' %}" class="hover:text-[#1F3D8A] transition">Our Programs</a>
+            <a href="{% url 'volunteer' %}" class="hover:text-[#1F3D8A] transition">Volunteer</a>
+            <a href="{% url 'donate' %}" class="hover:text-[#1F3D8A] transition">Donate</a>
+            <a href="{% url 'contact' %}" class="hover:text-[#1F3D8A] transition">Contact</a>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-8 text-2xl text-gray-500">
+            <a href="#" class="hover:text-[#1F3D8A] transition"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#1F3D8A] transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#1F3D8A] transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#1F3D8A] transition"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <div class="text-center text-gray-500 mt-8 text-base font-medium">
+            &copy; 2024 HopeHands Foundation. All rights reserved.
+        </div>
+
+    </div>
+</footer>

@@ -1,0 +1,485 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    @keyframes heroZoom {
+
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+
+    }
+
+    .hero-image {
+
+        animation: heroZoom 7s infinite ease-in-out;
+
+    }
+
+
+
+    .animate-fade-up {
+
+        animation: fadeUp 1s ease;
+
+    }
+
+
+
+    @keyframes fadeLeft {
+
+        from {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+    @keyframes fadeRight {
+
+        from {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+    @keyframes fadeUp {
+
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+    .fade-left {
+        animation: fadeLeft 1s ease;
+    }
+
+    .fade-up {
+        animation: fadeUp 1.2s ease;
+    }
+
+    .fade-right {
+        animation: fadeRight 1s ease;
+    }
+
+    /* Continuous Pulse Animation */
+
+    @keyframes pulseZoom {
+
+        0% {
+            transform: scale(1);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, .25);
+        }
+
+        50% {
+            transform: scale(1.08);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, .45);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, .25);
+        }
+
+    }
+
+    .pulse-btn {
+
+        animation: pulseZoom 2s infinite ease-in-out;
+
+    }
+
+    .pulse-btn:hover {
+
+        animation-play-state: paused;
+        transform: scale(1.08);
+
+    }
+</style>
+
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-50 via-white to-teal-50 py-20">
+
+
+    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden animate-fade-up">
+
+        <!-- Hero Image -->
+        <div class="overflow-hidden">
+
+            <img src="{% static 'images/herosuccess.png' %}" alt="Donation Success"
+                class="w-full h-64 md:h-80 lg:h-[430px] object-cover hero-image">
+
+        </div>
+
+        <!-- Content -->
+        <div class="py-10 px-8 text-center">
+
+            <div class="text-6xl mb-4 animate-bounce">
+                ❤️
+            </div>
+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-4">
+
+                Thank You,
+                <span class="text-blue-900">
+                    {{ name }}
+                </span>
+
+            </h1>
+
+            <h2 class="text-3xl font-bold text-gray-700 mb-6">
+
+                Thank You for Making a Difference
+                <span class="text-red-500">❤</span>
+
+            </h2>
+
+            <p class="text-lg text-gray-600 leading-8 max-w-7xl mx-auto">
+
+                Your generous donation will directly support our mission to provide essential resources and
+                opportunities to underserved communities.
+
+
+                <br><br>
+                It will help us deliver critical services,
+                empower individuals, and foster sustainable change
+
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+<!-- Impact Cards Section -->
+<section class="py-20 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Heading -->
+        <div class="text-center mb-14">
+
+            <h2 class="text-4xl font-extrabold text-gray-800">
+                Your Donation Creates Real Impact
+            </h2>
+
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Every contribution directly transforms lives. Here's how your generosity makes a difference.
+            </p>
+
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1 -->
+            <div
+                class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-3 fade-left">
+
+                <div class="overflow-hidden">
+
+                    <img src="{% static 'images/success1.png' %}"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Education">
+
+                </div>
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold text-gray-800">
+                        Educated a Child for a Month
+                    </h3>
+
+                    <p class="mt-3 text-green-700 leading-7">
+                        Your contribution ensures a child receives quality education,
+                        books and learning resources for an entire month.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-3 fade-up">
+
+                <div class="overflow-hidden">
+
+                    <img src="{% static 'images/success2.png' %}"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Meals">
+
+                </div>
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold text-gray-800">
+                        Provided Meals for Families
+                    </h3>
+
+                    <p class="mt-3 text-green-700 leading-7">
+                        Your donation helps provide nutritious meals to families
+                        struggling with food insecurity.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-3 fade-right">
+
+                <div class="overflow-hidden">
+
+                    <img src="{% static 'images/success3.png' %}"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Healthcare">
+
+                </div>
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold text-gray-800">
+                        Supported Basic Healthcare
+                    </h3>
+
+                    <p class="mt-3 text-green-700 leading-7">
+                        Your support provides essential healthcare services,
+                        medicines and medical assistance to those in need.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- Continue Supporting Section -->
+<section class="py-20 bg-gray-50">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        <!-- Heading -->
+        <div class="text-center mb-12">
+
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-6">
+                Your Support Can Go Even Further
+            </h2>
+
+            <p class="text-lg text-gray-600 leading-8 max-w-4xl mx-auto">
+                Consider making another contribution or sharing our mission with
+                your friends and family. Together, we can transform more lives
+                and create lasting change.
+            </p>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-14">
+
+            <a href="{% url 'donate' %}"
+                class="pulse-btn bg-green-600 hover:bg-green-700 text-white font-semibold px-10 py-4 rounded-xl shadow-lg transition duration-300">
+
+                Donate Again
+
+            </a>
+
+            <button onclick="shareCause()"
+                class="bg-green-100 hover:bg-green-200 text-gray-800 font-semibold px-10 py-4 rounded-xl shadow-lg transition duration-300">
+
+                Share This Cause
+
+            </button>
+
+        </div>
+
+        <!-- Stay Connected -->
+
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+
+            <h3 class="text-3xl font-bold text-gray-800 mb-6">
+                Stay Connected
+            </h3>
+
+            <div class="flex flex-col md:flex-row gap-4">
+
+                <div class="flex-1">
+
+                    <input type="email" id="newsletterEmail" placeholder="Receive email updates"
+                        class="w-full border border-gray-300 rounded-xl px-5 py-4 focus:ring-2 focus:ring-green-500 outline-none">
+
+                    <p id="emailError" class="text-red-600 text-sm mt-2"></p>
+
+                </div>
+
+                <button type="button" onclick="subscribeEmail()"
+                    class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition">
+
+                    Subscribe
+
+                </button>
+
+                <a href="{% url 'volunteer' %}"
+                    class="pulse-btn inline-block bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-4 rounded-xl transition duration-300 text-center">
+
+                    Become a Volunteer
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <p class="text-center text-green-700 mt-10 font-medium text-lg">
+        From all of us at HopeHands Foundation —
+        thank you for believing in humanity.
+    </p>
+
+    </div>
+
+</section>
+
+
+
+
+<script>
+
+    function shareCause() {
+
+        if (navigator.share) {
+
+            navigator.share({
+
+                title: "HopeHands Foundation",
+
+                text: "Join me in supporting HopeHands Foundation and help transform lives.",
+
+                url: window.location.origin
+
+            });
+
+        } else {
+
+            navigator.clipboard.writeText(window.location.origin);
+
+            alert("Website link copied to clipboard!");
+
+        }
+
+    }
+
+
+
+function subscribeEmail(){
+
+    const email=document.getElementById("newsletterEmail").value.trim();
+
+    const error=document.getElementById("emailError");
+
+    error.innerHTML="";
+
+    const pattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(email===""){
+
+        error.innerHTML="Email is required.";
+
+        return;
+
+    }
+
+    if(!pattern.test(email)){
+
+        error.innerHTML="Enter a valid email address.";
+
+        return;
+
+    }
+
+    fetch("{% url 'subscribe_email' %}",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json",
+            "X-CSRFToken":"{{ csrf_token }}"
+        },
+
+        body:JSON.stringify({
+            email:email
+        })
+
+    })
+
+    .then(response=>response.json())
+
+    .then(data=>{
+
+        if(data.status==="success"){
+
+            error.classList.remove("text-red-600");
+            error.classList.add("text-green-600");
+
+            error.innerHTML=data.message;
+
+            document.getElementById("newsletterEmail").value="";
+
+        }
+
+        else{
+
+            error.classList.remove("text-green-600");
+            error.classList.add("text-red-600");
+
+            error.innerHTML=data.message;
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+{% endblock %}
